@@ -210,22 +210,21 @@
 
 <script>
   // let url="a5d942be-7537-4daa-9472-408a1632230f.json"
-  let url="A53000000A-112046-001.json"
+  // let url="田園城市點位圖資.json"
+  let url="桃園市觀光導覽網-推薦遊程.json"
+  // let url="6782ca5e1d57792a995c61def457bfe6_export.xml"
   console.log('test');
   $.ajax({
     url:url,
-  
     dataType:'json',
     type:'get',
-    // headers:{
-    //   'accept':'application/json'
-    // },
+    headers:{
+      'accept':'application/json'
+    },
     success:function(res){
       console.log(res);
     }
   })
-// $.ajax("https://www.travel.taipei/open-api/zh-tw/Attractions/All",(res)=>{
-//   console.log(res)
-// })
+
 
 </script>
