@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
   <style>
 
   </style>
@@ -143,8 +145,28 @@
       </div>
     </div>
   </div>
+
+  <!-- datatable -->
+  <table id="myTable" class="display">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>AreaLocation</th>
+        <th>City</th>
+        <th>Town</th>
+        <th>Tel</th>
+        <th>Url</th>
+      </tr>
+    </thead>
+
+    <tbody id="myTbody">
+
+
+    </tbody>
+  </table>
+
   <!-- 卡片 -->
-  <h1 class="text-center m-4">景點介紹</h1>
+  <h1 class="text-center m-4">擁抱田園風光-農村旅遊資訊</h1>
   <div class="container">
 
     <div class="row">
@@ -205,25 +227,41 @@
 </body>
 
 </html>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 
 <script>
-  // let url="a5d942be-7537-4daa-9472-408a1632230f.json"
-  // let url="田園城市點位圖資.json"
-  let url="桃園市觀光導覽網-推薦遊程.json"
-  // let url="6782ca5e1d57792a995c61def457bfe6_export.xml"
-  console.log('test');
-  $.ajax({
-    url:url,
-    dataType:'json',
-    type:'get',
-    headers:{
-      'accept':'application/json'
-    },
-    success:function(res){
-      console.log(res);
-    }
+
+  $(function () {
+    const myTable = $('#myTable');
+    const myTbody = $('#myTbody');
+    let content = '';
+    let url = "https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvMovingRoad.aspx?IsTransData=1&UnitId=195"
+    $.ajax({
+      url: url,
+      type: 'get',
+      dataType: 'json',
+      data: '',//若有傳送資料時的資料設定 (GET沒有)
+      async: true,//  預設是true=非同步,false=同步 (true時整行可省略)
+      success: function (json) {
+        console.log(json);
+        for (let i = 0; i < json.length; i++) {
+          content = content + `
+          <tr>
+          <td>${json[i]["Name"]}</td>
+          <td>${json[i]["AreaLocation"]}</td>
+          <td>${json[i]["City"]}</td>
+          <td>${json[i]["Town"]}</td>
+          <td>${json[i]["Tel"]}</td>
+          <td>${json[i]["Url"]}</td>
+          </tr>`;
+        }
+        myTbody.html(content);
+        myTable.DataTable();
+      }
+    })
   })
 
 
