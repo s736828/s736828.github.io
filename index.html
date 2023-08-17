@@ -147,28 +147,27 @@
   </div>
 
   <!-- datatable -->
+  <h2 class="text-center m-4">擁抱田園風光-農村旅遊資訊</h2>
   <table id="myTable" class="display">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>AreaLocation</th>
-        <th>City</th>
-        <th>Town</th>
-        <th>Tel</th>
-        <th>Url</th>
+        <th>名稱</th>
+        <th>地理位置</th>
+        <th style="width: 5%;">縣市</th>
+        <th>鄉鎮</th>
+        <th>連絡電話</th>
+        <th>交通指南</th>
       </tr>
     </thead>
 
     <tbody id="myTbody">
 
-
     </tbody>
   </table>
-
+  <br><br>
   <!-- 卡片 -->
-  <h1 class="text-center m-4">擁抱田園風光-農村旅遊資訊</h1>
-  <div class="container">
 
+  <div class="container">
     <div class="row">
       <div class="card" style="width: 25rem; ">
         <img src="https://picsum.photos/id/250/300/200" class="card-img-top" alt="...">
@@ -211,18 +210,21 @@
       </div>
 
       <div class="card" style="width: 25rem;">
-        <img src="https://picsum.photos/id/263/300/200" class="card-img-top" alt="...">
+        <a href="https://ezgo.ardswc.gov.tw/zh-TW/Front/News/Detail/2487">
+
+          <img src="https://ezgo.ardswc.gov.tw/ViewNews.58273/%E9%98%BF%E9%87%8C%E7%A3%85.jpg" class="card-img-top"
+            alt="...">
+        </a>
         <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+          <p class="card-text text-center">~阿里磅生態休閒農場~</p>
         </div>
       </div>
 
     </div>
-
   </div>
-  <div class="container-fluid">
-    頁尾版權
+  <!-- 頁尾 -->
+  <div class="container-fluid bg-secondary text-white p-3">
+    資料來源：政府資料開放平台
   </div>
 </body>
 
@@ -255,11 +257,15 @@
           <td>${json[i]["City"]}</td>
           <td>${json[i]["Town"]}</td>
           <td>${json[i]["Tel"]}</td>
-          <td>${json[i]["Url"]}</td>
+          <td>${json[i]["TrafficGuidelines"]}</td>
           </tr>`;
         }
         myTbody.html(content);
-        myTable.DataTable();
+        myTable.DataTable({
+          language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/zh-HANT.json'
+          }
+        });
       }
     })
   })
