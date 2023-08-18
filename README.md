@@ -23,4 +23,4 @@
 
 ## 繳交方式
 完整代碼上傳 Github ClassRoom 至指定 repository，並於說明欄位提供 個人 GitPage 之預覽連結:<br>
-[個人作品集前台頁面](s736828.github.io)
+[個人作品集前台頁面](https://s736828.github.io)
