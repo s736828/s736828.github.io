@@ -312,7 +312,6 @@
       type: 'get',
       dataType: 'json',
       data: '',//若有傳送資料時的資料設定 (GET沒有)
-      async: true,//  預設是true=非同步,false=同步 (true時整行可省略)
       success: function (json) {
         console.log(json);
         for (let i = 0; i < json.length; i++) {
